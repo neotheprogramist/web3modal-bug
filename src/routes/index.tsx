@@ -3,7 +3,6 @@ import { type DocumentHead } from "@builder.io/qwik-city";
 import { defaultWagmiConfig } from "@web3modal/wagmi";
 
 export default component$(() => {
-
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
     console.log(defaultWagmiConfig);
