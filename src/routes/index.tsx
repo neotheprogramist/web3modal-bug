@@ -1,13 +1,8 @@
-import { component$, useVisibleTask$ } from "@builder.io/qwik";
+import { component$ } from "@builder.io/qwik";
 import { type DocumentHead } from "@builder.io/qwik-city";
-import { defaultWagmiConfig } from "@web3modal/wagmi";
+import { WalletConnect } from "~/components/wallet-connect";
 
 export default component$(() => {
-  // eslint-disable-next-line qwik/no-use-visible-task
-  useVisibleTask$(() => {
-    console.log(defaultWagmiConfig);
-  });
-
   return (
     <>
       <h1>Hi 👋</h1>
@@ -16,6 +11,7 @@ export default component$(() => {
         <br />
         Happy coding.
       </p>
+      <WalletConnect />
     </>
   );
 });
