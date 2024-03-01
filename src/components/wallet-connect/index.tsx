@@ -1,9 +1,9 @@
 import { component$, $, noSerialize, useStore } from '@builder.io/qwik';
 
-import { arbitrum, mainnet, polygon, sepolia } from "@wagmi/core/chains";
+import { mainnet, arbitrum } from 'viem/chains'
+import { reconnect } from '@wagmi/core'
 import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi';
 
-const chains = [arbitrum, mainnet, polygon, sepolia];
 const projectId = "26aebf5aa6f44cc2a8f74e674e0617b9";
 
 const metadata = {
@@ -11,10 +11,20 @@ const metadata = {
     description: 'Web3Modal Example',
     url: 'https://web3modal.com',
     icons: ['https://avatars.githubusercontent.com/u/37784886']
-  }
+}
 
 export const returnWeb3ModalAndClient = async () => {
-    const config = defaultWagmiConfig({ chains, projectId, metadata })
+    const chains: any = [arbitrum, mainnet];
+    const config = defaultWagmiConfig({
+        chains, // required
+        projectId, // required
+        metadata, // required
+        enableWalletConnect: true, // Optional - true by default
+        enableInjected: true, // Optional - true by default
+        enableEIP6963: true, // Optional - true by default
+        enableCoinbase: true, // Optional - true by default
+    })
+    reconnect(config);
     const modal = createWeb3Modal({
         wagmiConfig: config,
         projectId,
